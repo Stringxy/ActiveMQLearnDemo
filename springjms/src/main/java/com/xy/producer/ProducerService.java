@@ -1,7 +1,7 @@
-package com.xy.jms.producer;
+package com.xy.producer;
 
 /**
- * Created by xy on 2017/8/24.
+ * Created by xy on 2017/9/5.
  */
 public interface ProducerService {
     void sendMessage(String message);

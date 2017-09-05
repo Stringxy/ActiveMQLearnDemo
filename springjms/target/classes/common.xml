@@ -4,22 +4,17 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--开启注解-->
     <context:annotation-config/>
-    <!--ActiveMQ提供的ConnectionFactory-->
+    <!--activeMQ为我们提供的ConnectionFactory-->
     <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <property name="brokerURL" value="tcp://localhost:61616"></property>
+        <property name="brokerURL" value="tcp://127.0.0.1:61616"/>
     </bean>
-    <!--spring jms提供的连接池-->
+    <!--spring jms 为我们提供的连接池-->
     <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
-        <property name="targetConnectionFactory" ref="targetConnectionFactory"></property>
+        <property name="targetConnectionFactory" ref="targetConnectionFactory"/>
     </bean>
-    <!--一个队列的目的地-->
+
     <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg value="queue"/>
-    </bean>
-    <!--用于发送和接收消息的模板类-->
-    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <property name="connectionFactory" ref="connectionFactory"/>
+        <constructor-arg value="queue"></constructor-arg>
     </bean>
 </beans>
